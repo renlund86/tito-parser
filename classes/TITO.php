@@ -1,6 +1,6 @@
 <?php
 
-require 'Transaction.php';
+require __DIR__ . '/../classes/Transaction.php';
 
 /**
  * Description of TITO
@@ -22,11 +22,6 @@ class TITO {
     public function categorize() {
         foreach ($this->titoArr as $key => $row) {
             $recordType = mb_substr($row, 0, 3);
-
-            if ($recordType === "T00" || $recordType === "T40" || $recordType === "T50" || $recordType === "T70") {
-                $this->extraArr[] = $row;
-                unset($this->titoArr[$key]);
-            }
 
             if ($recordType === "T10") {
                 $transaction = new Transaction($row);
