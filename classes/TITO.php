@@ -34,7 +34,7 @@ class TITO {
             }
         }
 
-        echo json_encode($this->transactions, JSON_UNESCAPED_UNICODE);
+        return json_encode($this->transactions, JSON_UNESCAPED_UNICODE);
     }
 
 }
