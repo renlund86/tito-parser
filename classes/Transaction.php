@@ -48,7 +48,7 @@ class Transaction {
     private function transformMonetaryValue($sign, &$amountInt, $amountDec, &$amountFormatted) {
         $amountInt = ltrim($amountInt, "0");
         $floatRepresentation = floatval($amountInt . "." . $amountDec);
-        $amountFormatted = $sign . number_format($floatRepresentation, 2, ',', ' ') . "€";
+        $amountFormatted = trim($sign) . number_format($floatRepresentation, 2, ',', ' ') . "€"; //positive sign is whitespace so trimming
     }
 
     public function prettify() {
@@ -56,6 +56,12 @@ class Transaction {
         $this->transformDate($this->paymentDate);
         $this->transformDate($this->valueDate);
         $this->transformMonetaryValue($this->transactionAmountSign, $this->transactionAmountInt, $this->transactionAmountDec, $this->transactionAmountFormatted);
+        
+        //strip all whitespaces from public class-properties
+        foreach($this as $key => &$value) {
+            $value = rtrim($value);
+        }
+
         return $this;
     }
 
