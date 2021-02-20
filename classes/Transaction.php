@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/../classes/TransactionEntryDefinition.php';
+
 /**
  * Description of Transaction
  *
@@ -19,6 +21,7 @@ class Transaction {
     public $paymentDate;
     public $transactionType;
     public $transactionReasonCode;
+    public $transactionReasonCodeTranslation;
     public $transactionReasonDescription;
     public $transactionAmountFormatted;
     public $voucherCode;
@@ -37,7 +40,7 @@ class Transaction {
 
     private function transformDate(&$date) {
         if ($date === "000000") {
-            $date = null;
+            $date = "";
             return;
         }
 
@@ -55,7 +58,12 @@ class Transaction {
         $this->transformDate($this->entryDate);
         $this->transformDate($this->paymentDate);
         $this->transformDate($this->valueDate);
-        $this->transformMonetaryValue($this->transactionAmountSign, $this->transactionAmountInt, $this->transactionAmountDec, $this->transactionAmountFormatted);
+        $this->transformMonetaryValue(
+            $this->transactionAmountSign, 
+            $this->transactionAmountInt, 
+            $this->transactionAmountDec, 
+            $this->transactionAmountFormatted
+        );
         
         //strip all whitespaces from public class-properties
         foreach($this as $key => &$value) {
@@ -87,6 +95,11 @@ class Transaction {
         $this->referenceNumber = substr($this->rawDataRow, 159, 20);
         $this->formNumber = substr($this->rawDataRow, 179, 8);
         $this->levelCode = substr($this->rawDataRow, 187, 1);
+        
+        //Code translation according to manual (transactionReasonDescription is bank-specific)
+        $codeTranslation = new TransactionEntryDefinition($this->transactionReasonCode);
+        $this->transactionReasonCodeTranslation = $codeTranslation->map()->getValue();
+        
         return $this;
     }
 
