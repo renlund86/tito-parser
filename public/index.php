@@ -28,6 +28,11 @@ $app->add(function ($request, $handler) {
 $app->post('/parse', function (Request $request, Response $response, $args) {
     
     $requestData = json_decode($request->getBody());
+    
+    if(!file_exists(__DIR__ . '/../'.$requestData->fileName)) {
+        throw new Exception("File not found!");
+    }
+    
     $fn = fopen(__DIR__ . '/../'.$requestData->fileName, "r");
 
     $file_contents = array();

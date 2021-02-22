@@ -44,9 +44,9 @@ class Transaction {
     }
     
     /**
-     * Transform date to proper format
+     * Transform date to proper format dd.mm.yyyy
      * 
-     * @param string $date by reference
+     * @param string &$date
      * @return void
      */
     private function transformDate(&$date) {
@@ -63,7 +63,7 @@ class Transaction {
      * Creates a properly formatted monetary value
      * 
      * @param string $sign
-     * @param integer &$amountInt
+     * @param string &$amountInt
      * @param string $amountDec
      * @param string &$amountFormatted
      */
