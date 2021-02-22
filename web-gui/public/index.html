@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TITO viewer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container-fluid">
+  <h1>TITO viewer</h1>
+  <div class="jumbotron">
+    <div class="container">
+    <form class="form-inline" action="/action_page.php">
+      <div class="form-group">
+        <label for="sel1">Select bank statement file:</label>
+        <select class="form-control" id="type">
+          <option value="input.txt">input.txt</option>
+          <option value="N3konto67-110820.txt">N3konto67-110820.txt</option>
+        </select>
+      </div>
+          <button type="submit" class="btn btn-success">Load</button>
+        </form>
+    </div>
+  </div>
+  <div class="wrapper">
+    <!-- output list -->
+    <ul class="item-list">
+      
+    </ul>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="module" src='app.js'></script>
+  </div>
+</body>
+</html>
