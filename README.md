@@ -45,6 +45,14 @@ Set value for key CORS_ALLOWED_DOMAIN to match the intended origin for the clien
         CustomLog ${APACHE_LOG_DIR}/tito-access.log combined
 </VirtualHost>
 ```
+### Demo server
+
+>**POST** http://tito-server.mrenlund.com/parse
+
+JSON payload:
+
+>{"fileName":"N3account21-080819.txt"}
+
 
 ## Client (web-app)
 
@@ -60,14 +68,9 @@ Transpile TS code to public folder by running the tsc command in terminal:
 
 output in public folder
 
-### Demo server http://tito-test.mrenlund.com/
+### Demo server
 
->**POST** http://tito-test.mrenlund.com/parse
-
-JSON payload:
-
->{"fileName":"input.txt"}
-
+http://tito-client.mrenlund.com
 
 
 
