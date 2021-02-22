@@ -23,11 +23,17 @@ Requirements:
 
 ### Installation instructions for server
 
+1.) Install dependencies
 > composer install
+
+2.) Edit .env file
+Set value for key CORS_ALLOWED_DOMAIN to match the intended origin for the client (e.g. serving webapp from localhost or webserver)
+
+*Default is *CORS_ALLOWED_DOMAIN="http://127.0.0.1:5500"* for simple testing from VSCode > LiveServer
 
 **Virtual Host config***
 ```
-<VirtualHost *:8090>
+<VirtualHost *:80>
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/tito-parser/public
 <Directory /var/www/tito-parser/public>
