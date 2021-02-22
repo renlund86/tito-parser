@@ -3,7 +3,7 @@
 require __DIR__ . '/../classes/TransactionEntryDefinition.php';
 
 /**
- * Description of Transaction
+ * Transaction class
  *
  * @author Mathias Renlund | <renlund86@gmail.com>
  */
@@ -33,11 +33,22 @@ class Transaction {
     public $referenceNumber;
     public $formNumber;
     public $levelCode;
-
+    
+    /**
+     * Constructor
+     * 
+     * @param string $transaction
+     */
     public function __construct($transaction) {
         $this->rawDataRow = $transaction;
     }
-
+    
+    /**
+     * Transform date to proper format
+     * 
+     * @param string $date by reference
+     * @return void
+     */
     private function transformDate(&$date) {
         if ($date === "000000") {
             $date = "";
@@ -47,13 +58,26 @@ class Transaction {
         $splitDateArr = str_split($date, 2);
         $date = $splitDateArr[2] . "." . $splitDateArr[1] . ".20" . $splitDateArr[0];
     }
-
+    
+    /**
+     * Creates a properly formatted monetary value
+     * 
+     * @param string $sign
+     * @param integer &$amountInt
+     * @param string $amountDec
+     * @param string &$amountFormatted
+     */
     private function transformMonetaryValue($sign, &$amountInt, $amountDec, &$amountFormatted) {
         $amountInt = ltrim($amountInt, "0");
         $floatRepresentation = floatval($amountInt . "." . $amountDec);
         $amountFormatted = trim($sign) . number_format($floatRepresentation, 2, ',', ' ') . "€"; //positive sign is whitespace so trimming
     }
-
+    
+    /**
+     * Method that initiates the formatting
+     * 
+     * @return $this
+     */
     public function prettify() {
         $this->transformDate($this->entryDate);
         $this->transformDate($this->paymentDate);
@@ -72,7 +96,12 @@ class Transaction {
 
         return $this;
     }
-
+    
+    /**
+     * Parsing the values based on their position in the raw-string
+     * 
+     * @return $this
+     */
     public function parseRaw() {
         $this->recordLength = substr($this->rawDataRow, 3, 3);
         $this->transactionNo = substr($this->rawDataRow, 6, 6);
@@ -102,7 +131,12 @@ class Transaction {
         
         return $this;
     }
-
+    
+    /**
+     * Instance getter method
+     * 
+     * @return $this
+     */
     public function getObj() {
         return $this;
     }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of TransactionEntryDefinition
+ * Class for mapping code to TransactionEntryDefinition
  *
  * @author Mathias Renlund
  */
@@ -14,6 +14,11 @@ class TransactionEntryDefinition {
         $this->code = $code;
     }
     
+    /**
+     * Set mapping and return instance
+     * 
+     * @return $this 
+     */
     public function map() {
         $mapping = array(
             700 => "Transaction processed in some payment service",
@@ -41,10 +46,20 @@ class TransactionEntryDefinition {
         return $this;
     }
     
+    /**
+     * Mapped value getter method
+     * 
+     * @return string
+     */
     public function getValue() {
         return $this->value;
     }
     
+    /**
+     * Code getter method
+     * 
+     * @return int
+     */
     public function getCode() {
         return $this->code;
     }

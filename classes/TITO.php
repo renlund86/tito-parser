@@ -3,7 +3,7 @@
 require __DIR__ . '/../classes/Transaction.php';
 
 /**
- * Description of TITO
+ * TITO Class
  *
  * @author Mathias Renlund | <renlund86@gmail.com>
  */
@@ -12,13 +12,23 @@ class TITO {
     private $titoArr = "";
     private $extraArr = "";
     private $transactions = "";
-
+    
+    /**
+     * Constructor
+     * 
+     * @param array $input
+     */
     public function __construct($input) {
         $this->titoArr = $input;
         $this->extraArr = array();
         $this->transactions = array();
     }
-
+    
+    /**
+     * TITO implmentation logic, filters out T10 records (skipping others for now) and initiates the parsing.
+     * 
+     * @return string JSON-encoded
+     */
     public function categorize() {
         foreach ($this->titoArr as $key => $row) {
             $recordType = mb_substr($row, 0, 3);
