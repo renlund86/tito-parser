@@ -4,7 +4,7 @@ This project consists of 2 parts: Server and Client. The server parses TITO form
 
 ### TITO
 The TITO-format is an old ASCII-format (7-bit, ISO 646) dating back to 1990 but is still widely in use for representing electronic account statements in Finland.
-To interpret the contents of the bank-statement, a TITO record description manual is needed and was jointly created by the Finnish banks, managed through Finanssiala ry and the manual can be downloaded from their server [here](https://www.finanssiala.fi/maksujenvalitys/dokumentit/Konekielinen_tiliote_palvelukuvaus.pdf). There are small bank-specific variations in the implmenentation, every finnish bank have their own technical manual, two examples below:
+To interpret the contents of the bank-statement, a TITO record description manual is needed and was jointly created by the Finnish banks, managed through Finanssiala ry and the manual can be downloaded from their server [here](https://www.finanssiala.fi/maksujenvalitys/dokumentit/Konekielinen_tiliote_palvelukuvaus.pdf). There are small bank-specific variations in the implementation, every finnish bank have their own technical manual, two examples below:
 
 - http://www-2.danskebank.com/Link/Tito/$file/Tito.pdf
 - https://www.nordea.fi/Images/147-84478/xml-tiliote-en.pdf
